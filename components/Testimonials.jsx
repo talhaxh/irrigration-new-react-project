@@ -1,6 +1,3 @@
-import React from 'react';
-import { Star, Quote } from 'lucide-react';
-
 export default function Testimonials() {
   const testimonials = [
     {
@@ -54,76 +51,75 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <section id="testimonials" className="section-padding bg-light-gray">
+      <div className="container">
+        <div className="text-center mb-5">
+          <h2 className="section-title">
             Success Stories from Our Farmers
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Real farmers sharing their transformation journey with our smart agriculture solutions
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="row g-4">
           {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative"
-            >
-              <div className="absolute -top-4 left-8">
-                <div className="bg-green-500 p-3 rounded-full">
-                  <Quote className="w-6 h-6 text-white" />
+            <div key={index} className="col-md-6 col-lg-4">
+              <div className="testimonial-card">
+                <div className="testimonial-quote">
+                  <i className="bi bi-quote text-white"></i>
                 </div>
-              </div>
 
-              <div className="pt-6">
-                <div className="flex items-center mb-6">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
-                    <p className="text-green-600 font-medium">{testimonial.role}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.location}</p>
+                <div style={{ paddingTop: '1.5rem' }}>
+                  <div className="d-flex align-items-center mb-4">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="testimonial-avatar me-3"
+                    />
+                    <div>
+                      <h3 className="h6 fw-bold text-dark mb-1">{testimonial.name}</h3>
+                      <p className="text-success fw-medium mb-0 small">{testimonial.role}</p>
+                      <p className="text-muted small mb-0">{testimonial.location}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
+                  <div className="d-flex align-items-center mb-3">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <i key={i} className="bi bi-star-fill star-rating"></i>
+                    ))}
+                  </div>
 
-                <p className="text-gray-700 leading-relaxed">
-                  "{testimonial.text}"
-                </p>
+                  <p className="text-muted">
+                    "{testimonial.text}"
+                  </p>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Stats Section */}
-        <div className="mt-20 bg-gradient-to-r from-green-600 to-amber-600 rounded-3xl p-8 md:p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-8">Our Impact in Numbers</h3>
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="text-4xl font-bold text-white mb-2">500+</div>
-              <div className="text-green-100">Happy Farmers</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-white mb-2">5000+</div>
-              <div className="text-green-100">Acres Covered</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-white mb-2">Rs2Cr+</div>
-              <div className="text-green-100">Farmer Savings</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-white mb-2">95%</div>
-              <div className="text-green-100">Satisfaction Rate</div>
+        <div className="mt-5">
+          <div className="bg-gradient-primary rounded-4 p-5 text-center text-white">
+            <h3 className="h2 fw-bold mb-4">Our Impact in Numbers</h3>
+            <div className="row g-4">
+              <div className="col-6 col-md-3">
+                <div className="display-6 fw-bold mb-2">500+</div>
+                <div className="text-light">Happy Farmers</div>
+              </div>
+              <div className="col-6 col-md-3">
+                <div className="display-6 fw-bold mb-2">5000+</div>
+                <div className="text-light">Acres Covered</div>
+              </div>
+              <div className="col-6 col-md-3">
+                <div className="display-6 fw-bold mb-2">Rs2Cr+</div>
+                <div className="text-light">Farmer Savings</div>
+              </div>
+              <div className="col-6 col-md-3">
+                <div className="display-6 fw-bold mb-2">95%</div>
+                <div className="text-light">Satisfaction Rate</div>
+              </div>
             </div>
           </div>
         </div>

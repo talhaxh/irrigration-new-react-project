@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, MessageSquare, Send, CheckCircle } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -29,28 +28,28 @@ export default function Contact() {
 
   const contactInfo = [
     {
-      icon: Phone,
+      icon: 'bi-telephone',
       title: 'Phone Support',
       details: '+92 98765 43210',
       subDetails: 'Mon-Sat, 9 AM - 7 PM',
       action: 'Call Now',
-      color: 'bg-green-500',
+      color: 'contact-icon-green',
     },
     {
-      icon: MessageSquare,
+      icon: 'bi-whatsapp',
       title: 'WhatsApp Support',
       details: '+92 98765 43210',
       subDetails: '24/7 Instant Support',
       action: 'Chat on WhatsApp',
-      color: 'bg-green-600',
+      color: 'contact-icon-green',
     },
     {
-      icon: Mail,
+      icon: 'bi-envelope',
       title: 'Email Support',
       details: 'support@agritech.com',
       subDetails: 'Response within 2 hours',
       action: 'Send Email',
-      color: 'bg-blue-500',
+      color: 'contact-icon-blue',
     },
   ];
 
@@ -66,38 +65,37 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <section id="contact" className="section-padding bg-light-gray">
+      <div className="container">
+        <div className="text-center mb-5">
+          <h2 className="section-title">
             Get in Touch with Our Experts
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Ready to transform your farm? Contact us for personalized consultation and quotes
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="row g-5">
           {/* Contact Information */}
-          <div className="lg:col-span-1">
-            <div className="space-y-6">
+          <div className="col-lg-4">
+            <div className="row g-4">
               {contactInfo.map((info, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 ${info.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                      <info.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
-                      <p className="text-gray-700 font-medium mb-1">{info.details}</p>
-                      <p className="text-gray-500 text-sm mb-4">{info.subDetails}</p>
-                      <button className="text-green-600 hover:text-green-700 font-semibold text-sm flex items-center space-x-2 transition-colors duration-200">
-                        <span>{info.action}</span>
-                        <Send className="w-4 h-4" />
-                      </button>
+                <div key={index} className="col-12">
+                  <div className="contact-info-card">
+                    <div className="d-flex align-items-start">
+                      <div className={`contact-icon ${info.color} text-white me-3`}>
+                        <i className={`${info.icon} fs-5`}></i>
+                      </div>
+                      <div className="flex-grow-1">
+                        <h3 className="h6 fw-bold text-dark mb-2">{info.title}</h3>
+                        <p className="text-dark fw-medium mb-1">{info.details}</p>
+                        <p className="text-muted small mb-3">{info.subDetails}</p>
+                        <button className="btn btn-link text-success fw-semibold p-0 d-flex align-items-center">
+                          <span className="me-2">{info.action}</span>
+                          <i className="bi bi-send"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -106,21 +104,21 @@ export default function Contact() {
           </div>    
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-3xl p-8 shadow-xl">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Send us a Message</h3>
+          <div className="col-lg-8">
+            <div className="bg-white rounded-4 p-5 shadow">
+              <h3 className="h4 fw-bold text-dark mb-4">Send us a Message</h3>
               
               {isSubmitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h4>
-                  <p className="text-gray-600">Our team will contact you within 24 hours.</p>
+                <div className="text-center py-5">
+                  <i className="bi bi-check-circle display-1 text-success mb-4"></i>
+                  <h4 className="h4 fw-bold text-dark mb-2">Message Sent Successfully!</h4>
+                  <p className="text-muted">Our team will contact you within 24 hours.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                <form onSubmit={handleSubmit}>
+                  <div className="row g-4">
+                    <div className="col-md-6">
+                      <label className="form-label fw-medium text-dark">
                         Full Name *
                       </label>
                       <input
@@ -129,12 +127,12 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-200"
+                        className="form-control form-control-custom"
                         placeholder="Enter your name"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <div className="col-md-6">
+                      <label className="form-label fw-medium text-dark">
                         Email Address *
                       </label>
                       <input
@@ -143,15 +141,15 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-200"
+                        className="form-control form-control-custom"
                         placeholder="Enter your email"
                       />
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="row g-4 mt-1">
+                    <div className="col-md-6">
+                      <label className="form-label fw-medium text-dark">
                         Phone Number *
                       </label>
                       <input
@@ -160,12 +158,12 @@ export default function Contact() {
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-200"
+                        className="form-control form-control-custom"
                         placeholder="Enter your phone number"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <div className="col-md-6">
+                      <label className="form-label fw-medium text-dark">
                         Farm Size (Acres)
                       </label>
                       <input
@@ -173,21 +171,21 @@ export default function Contact() {
                         name="farmSize"
                         value={formData.farmSize}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-200"
+                        className="form-control form-control-custom"
                         placeholder="Enter farm size"
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="mt-4">
+                    <label className="form-label fw-medium text-dark">
                       Service Interested In
                     </label>
                     <select
                       name="service"
                       value={formData.service}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-200"
+                      className="form-select form-control-custom"
                     >
                       <option value="">Select a service</option>
                       {services.map((service, index) => (
@@ -198,8 +196,8 @@ export default function Contact() {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="mt-4">
+                    <label className="form-label fw-medium text-dark">
                       Message
                     </label>
                     <textarea
@@ -207,16 +205,16 @@ export default function Contact() {
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-200 resize-none"
+                      className="form-control form-control-custom"
                       placeholder="Tell us about your requirements..."
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-green-600 to-amber-600 hover:from-green-700 hover:to-amber-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                    className="btn btn-gradient w-100 py-3 mt-4 d-flex align-items-center justify-content-center"
                   >
-                    <Send className="w-5 h-5" />
+                    <i className="bi bi-send me-2"></i>
                     <span>Send Message</span>
                   </button>
                 </form>
